@@ -243,8 +243,9 @@ async def run_evaluation(x_gemini_api_key: str = Header(None, alias="X-Gemini-AP
         raise HTTPException(status_code=500, detail=str(e))
 
 
-# ─── Static files (production build) ────────────────────────────────
+# ─── Static files (production build fallback handling) ───────────────
 frontend_dist = Path(__file__).parent / "frontend" / "dist"
+
 if frontend_dist.exists():
     app.mount("/assets", StaticFiles(directory=str(frontend_dist / "assets")), name="assets")
 
@@ -254,6 +255,15 @@ if frontend_dist.exists():
         if file_path.is_file():
             return FileResponse(str(file_path))
         return FileResponse(str(frontend_dist / "index.html"))
+else:
+    # Fallback to avoid 'Not Found' if the UI folder isn't built yet
+    @app.get("/{full_path:path}")
+    async def fallback_route(full_path: str):
+        return {
+            "message": "Backend running! Frontend assets folder not found.", 
+            "hint": "Please build your React app using 'npm run build' inside code/frontend.",
+            "docs_url": "/docs"
+        }
 
 
 if __name__ == "__main__":
