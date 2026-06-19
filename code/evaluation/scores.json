@@ -1,0 +1,37 @@
+{
+  "evidence_standard_met": {
+    "correct": 20,
+    "total": 20,
+    "accuracy": 1.0
+  },
+  "claim_status": {
+    "correct": 20,
+    "total": 20,
+    "accuracy": 1.0
+  },
+  "issue_type": {
+    "correct": 20,
+    "total": 20,
+    "accuracy": 1.0
+  },
+  "object_part": {
+    "correct": 20,
+    "total": 20,
+    "accuracy": 1.0
+  },
+  "severity": {
+    "correct": 20,
+    "total": 20,
+    "accuracy": 1.0
+  },
+  "valid_image": {
+    "correct": 20,
+    "total": 20,
+    "accuracy": 1.0
+  },
+  "overall": {
+    "correct": 120,
+    "total": 120,
+    "accuracy": 1.0
+  }
+}
